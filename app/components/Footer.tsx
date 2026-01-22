@@ -8,36 +8,36 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold text-xango-red mb-4">Xango Music</h3>
             <p className="text-gray-400">
-              World music specialist since 2012. Record store, distribution, and magazine.
+              Wêreldmuziek specialist sinds 2012. Platenzaak, distributie, en tijdschrift.
             </p>
           </div>
           <div>
-            <h4 className="font-bold mb-4">Quick Links</h4>
+            <h4 className="font-bold mb-4">Snel Koppelingen</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><Link href="/catalogue" className="hover:text-white">Catalogue</Link></li>
-              <li><Link href="/news" className="hover:text-white">News</Link></li>
-              <li><Link href="/distribution" className="hover:text-white">Distribution</Link></li>
+              <li><Link href="/catalogue" className="hover:text-white">Catalogus</Link></li>
+              <li><Link href="/news" className="hover:text-white">Nieuws</Link></li>
+              <li><Link href="/distribution" className="hover:text-white">Distributie</Link></li>
               <li><Link href="/magazine" className="hover:text-white">Magazine</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-bold mb-4">Support</h4>
+            <h4 className="font-bold mb-4">Hulp</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><Link href="/contact" className="hover:text-white">Contact Us</Link></li>
-              <li><Link href="/faq" className="hover:text-white">FAQ</Link></li>
-              <li><Link href="/shipping" className="hover:text-white">Shipping Info</Link></li>
+              <li><Link href="/contact" className="hover:text-white">Kontact opnemen</Link></li>
+              <li><Link href="/faq" className="hover:text-white">Veel gestelde vraagen</Link></li>
+              <li><Link href="/shipping" className="hover:text-white">Verzend informatie</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-bold mb-4">Contact</h4>
+            <h4 className="font-bold mb-4">Kontact</h4>
             <p className="text-gray-400">
-              Email: dev@xangomusic.com<br />
-              Follow us on social media
+              Email: info@xangomusic.com<br />
+              Volg ons op de socials
             </p>
           </div>
         </div>
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400 text-sm">
-          <p>&copy; {new Date().getFullYear()} Xango Music. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Xango Music. Alle reghten voorbehouden.</p>
         </div>
       </div>
     </footer>

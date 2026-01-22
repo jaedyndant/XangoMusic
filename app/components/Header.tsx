@@ -9,11 +9,11 @@ export default function Header() {
           <span className="hidden md:inline font-medium">MUSIC</span>
         </Link>
         <nav className="hidden md:flex space-x-8">
-          <Link href="/catalogue" className="hover:text-xango-red transition-colors">Catalogue</Link>
-          <Link href="/news" className="hover:text-xango-red transition-colors">News</Link>
-          <Link href="/distribution" className="hover:text-xango-red transition-colors">Distribution</Link>
+          <Link href="/catalogue" className="hover:text-xango-red transition-colors">Catalogus</Link>
+          <Link href="/news" className="hover:text-xango-red transition-colors">Nieuws</Link>
+          <Link href="/distribution" className="hover:text-xango-red transition-colors">Distributie</Link>
           <Link href="/magazine" className="hover:text-xango-red transition-colors">Magazine</Link>
-          <Link href="/contact" className="hover:text-xango-red transition-colors">Contact</Link>
+          <Link href="/contact" className="hover:text-xango-red transition-colors">Kontact</Link>
         </nav>
         <div className="md:hidden">
           {/* Mobile menu button could go here */}
