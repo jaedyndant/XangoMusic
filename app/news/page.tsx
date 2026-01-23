@@ -3,9 +3,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-/**
- * Nieuws en reviews
- */
 export default function NewsPage() {
   const [activeCategory, setActiveCategory] = useState('All');
   const newsItems = [
@@ -47,7 +44,6 @@ export default function NewsPage() {
           <p className="text-gray-500">Stay updated with the latest world music news, album reviews, and artist features</p>
         </div>
 
-        {/* Kattegorie filtrs */}
         <div className="flex flex-wrap gap-3 mb-12">
           {categories.map((cat) => (
             <button 

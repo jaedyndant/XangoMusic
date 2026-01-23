@@ -9,8 +9,8 @@ module.exports = {
     extend: {
       colors: {
         xango: {
-          red: '#E11D48', // Felle rode kleur
-          dark: '#111827', // Donkeren kleur voor boven
+          red: '#E11D48',
+          dark: '#111827',
           grey: '#374151',
           light: '#F3F4F6',
         }

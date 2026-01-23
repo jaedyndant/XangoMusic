@@ -6,9 +6,6 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useCart } from './CartContext'
 
-/**
- * Kop van de sied met naviegasie
- */
 export default function Header() {
   const { totalItems } = useCart()
   const [searchTerm, setSearchTerm] = useState('')
@@ -39,7 +36,6 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Navigatie links in het midden */}
         <nav className="hidden lg:flex items-center space-x-6">
           <Link href="/catalogue" className="text-sm font-medium hover:text-xango-red transition-colors">Catalogue</Link>
           <Link href="/news" className="text-sm font-medium hover:text-xango-red transition-colors">News</Link>

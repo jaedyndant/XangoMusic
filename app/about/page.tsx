@@ -1,9 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 
-/**
- * Over deze pagina
- */
 export default function AboutPage() {
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -13,7 +10,6 @@ export default function AboutPage() {
           <p className="text-gray-500">Local music from all over the world</p>
         </div>
 
-        {/* Sektie over Arrnulf */}
         <div className="bg-[#4b4b4b] text-white rounded-3xl p-8 md:p-12 mb-12 shadow-xl overflow-hidden relative">
           <div className="flex flex-col md:flex-row gap-12 items-center relative z-10">
             <div className="md:w-2/3">

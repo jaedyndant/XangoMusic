@@ -7,9 +7,6 @@ import { useParams } from 'next/navigation'
 import { useCart } from '../../components/CartContext'
 import { albums } from '../../data/albums'
 
-/**
- * Deetaals van het produckt
- */
 export default function ProductDetailsPage() {
   const { id } = useParams()
   const { addToCart } = useCart()
@@ -39,7 +36,6 @@ export default function ProductDetailsPage() {
 
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 p-8 md:p-12">
-            {/* album foto  */}
             <div className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl">
               {album.isNew && (
                 <span className="absolute top-6 left-6 z-10 bg-xango-red text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg uppercase tracking-widest">New</span>

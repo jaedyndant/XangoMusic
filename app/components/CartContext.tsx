@@ -2,9 +2,6 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react'
 
-/**
- * CartItem interface voor producten in de winkelwagen
- */
 interface CartItem {
   id: string
   artist: string
@@ -15,9 +12,6 @@ interface CartItem {
   quantity: number
 }
 
-/**
- * waarde berekeningen
- */
 interface CartContextType {
   cart: CartItem[]
   addToCart: (item: any) => void
@@ -30,9 +24,6 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
 
-/**
- * CartProvider om de winkelwagen te beheren
- */
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([])
 
@@ -97,9 +88,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   )
 }
 
-/**
- * Kustem hoek voor winkelwachun
- */
 export function useCart() {
   const context = useContext(CartContext)
   if (context === undefined) {

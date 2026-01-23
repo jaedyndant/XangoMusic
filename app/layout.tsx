@@ -5,9 +5,6 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import { CartProvider } from './components/CartContext'
 
-/**
- * Root layout voor de hele applicatie
- */
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {

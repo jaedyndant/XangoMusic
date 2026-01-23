@@ -1,5 +1,4 @@
 /** 
- * Configuratie van de Next.js site
  * @type {import('next').NextConfig} 
  */
 const nextConfig = {

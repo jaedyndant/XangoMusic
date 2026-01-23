@@ -1,10 +1,5 @@
 import React from 'react';
 
-/**
- * Xangoma Magazine
- * 
- * 
- */
 export default function XangomaPage() {
   const editions = [
     { id: 1, title: 'Winter 2025 Edition', focus: 'African Rhythms', date: 'Jan 2025' },

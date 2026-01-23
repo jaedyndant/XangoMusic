@@ -5,22 +5,16 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { albums } from './data/albums'
 
-/**
- *
- *home pagina 
- */
 export default function Home() {
   const [nowPlaying, setNowPlaying] = useState(albums[0])
 
   useEffect(() => {
-    // randos album
     const randomIndex = Math.floor(Math.random() * albums.length)
     setNowPlaying(albums[randomIndex])
   }, [])
 
   return (
     <div className="flex flex-col">
-      {/* Hero sectie met donkere achtergrond */}
       <section className="bg-gradient-to-r from-[#1a1a1a] to-[#2d2d2d] text-white py-20 px-4">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>

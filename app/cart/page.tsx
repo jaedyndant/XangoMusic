@@ -5,9 +5,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useCart } from '../components/CartContext'
 
-/**
- * Winkelwagen pagina
- */
 export default function CartPage() {
   const { cart, removeFromCart, updateQuantity, clearCart, subtotal, totalItems } = useCart()
 
@@ -47,7 +44,6 @@ export default function CartPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Leist met spulletjes */}
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
               <div className="divide-y divide-gray-100">

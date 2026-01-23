@@ -1,6 +1,5 @@
 import Link from 'next/link'
 
-// Voettekst onderaan de pagina
 export default function Footer() {
   return (
     <footer className="bg-xango-dark text-white py-12">
@@ -13,7 +12,6 @@ export default function Footer() {
             </p>
           </div>
           <div>
-            {/* Snelen links */}
             <h4 className="font-bold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-gray-400">
               <li><Link href="/catalogue" className="hover:text-white">Catalogue</Link></li>
