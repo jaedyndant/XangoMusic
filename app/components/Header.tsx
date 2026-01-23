@@ -43,7 +43,6 @@ export default function Header() {
         <nav className="hidden lg:flex items-center space-x-6">
           <Link href="/catalogue" className="text-sm font-medium hover:text-xango-red transition-colors">Catalogue</Link>
           <Link href="/news" className="text-sm font-medium hover:text-xango-red transition-colors">News</Link>
-          <Link href="/xmd" className="text-sm font-medium hover:text-xango-red transition-colors">XMD</Link>
           <Link href="/xangoma" className="text-sm font-medium hover:text-xango-red transition-colors">Xangoma</Link>
           <Link href="/about" className="text-sm font-medium hover:text-xango-red transition-colors">About</Link>
         </nav>

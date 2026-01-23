@@ -18,7 +18,6 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-400">
               <li><Link href="/catalogue" className="hover:text-white">Catalogue</Link></li>
               <li><Link href="/news" className="hover:text-white">News</Link></li>
-              <li><Link href="/xmd" className="hover:text-white">XMD Distribution</Link></li>
               <li><Link href="/xangoma" className="hover:text-white">Xangoma Magazine</Link></li>
             </ul>
           </div>

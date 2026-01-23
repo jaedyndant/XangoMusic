@@ -1,5 +1,9 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
+import { useState, useEffect } from 'react'
+import { albums } from './data/albums'
 
 /**
  * Hoofdpagina component
@@ -7,6 +11,14 @@ import Image from 'next/image'
  * Rekreatie van de hoompage gebaseert op de screenschots, inklusief hero sektie en statistieken.
  */
 export default function Home() {
+  const [nowPlaying, setNowPlaying] = useState(albums[0])
+
+  useEffect(() => {
+    // Kies een willekeurig album bij het laden van de pagina
+    const randomIndex = Math.floor(Math.random() * albums.length)
+    setNowPlaying(albums[randomIndex])
+  }, [])
+
   return (
     <div className="flex flex-col">
       {/* Hero sectie met donkere achtergrond */}
@@ -24,9 +36,6 @@ export default function Home() {
             <div className="flex flex-wrap gap-4">
               <Link href="/catalogue" className="bg-xango-red text-white px-8 py-3 rounded-md font-bold hover:bg-red-700 transition-colors">
                 Explore Catalogue
-              </Link>
-              <Link href="/xmd" className="border border-white text-white px-8 py-3 rounded-md font-bold hover:bg-white hover:text-black transition-all">
-                Artist Services
               </Link>
             </div>
             
@@ -49,13 +58,21 @@ export default function Home() {
           <div className="hidden lg:block relative">
             <div className="bg-[#333]/80 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-2xl">
               <div className="flex gap-4 items-center">
-                <div className="w-20 h-20 bg-gray-700 rounded-lg animate-pulse"></div>
+                <div className="relative w-24 h-24 rounded-lg overflow-hidden shadow-lg border border-white/10">
+                  <Image 
+                    src={nowPlaying.image} 
+                    alt={nowPlaying.title} 
+                    fill 
+                    className="object-cover"
+                  />
+                </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-xango-red text-xs font-bold uppercase tracking-widest">Now Playing</span>
+                    <span className="text-xango-red text-[10px] font-bold uppercase tracking-widest animate-pulse">Now Playing</span>
                   </div>
-                  <h3 className="font-bold text-xl">Tinariwen - Amatssou</h3>
-                  <p className="text-gray-400">Desert Blues • Mali</p>
+                  <h3 className="font-bold text-xl leading-tight">{nowPlaying.artist}</h3>
+                  <p className="text-gray-400 text-sm">{nowPlaying.title}</p>
+                  <p className="text-gray-500 text-xs mt-1">{nowPlaying.genre} • {nowPlaying.country}</p>
                 </div>
               </div>
               <div className="mt-6">
@@ -74,13 +91,13 @@ export default function Home() {
 
       <section className="py-24 bg-white px-4">
         <div className="container mx-auto text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4">Three Ways We Serve Music</h2>
+          <h2 className="text-3xl font-bold mb-4">How We Serve Music</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            From discovering rare records to distributing new artists, we're your complete world music ecosystem.
+            From discovering rare records to deep dives into musical culture, we're your world music gateway.
           </p>
         </div>
 
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
           <div className="bg-xango-red text-white p-8 rounded-2xl shadow-xl hover:-translate-y-2 transition-transform duration-300">
             <div className="mb-6">
               <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,21 +110,6 @@ export default function Home() {
             </p>
             <Link href="/catalogue" className="font-bold flex items-center group">
               Browse Collection <span className="ml-2 group-hover:translate-x-2 transition-transform">→</span>
-            </Link>
-          </div>
-
-          <div className="bg-[#374151] text-white p-8 rounded-2xl shadow-xl hover:-translate-y-2 transition-transform duration-300">
-            <div className="mb-6 text-xango-red">
-              <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9-9H3m9 9L3 12m0 0l9-9m-9 9l9 9" />
-              </svg>
-            </div>
-            <h3 className="text-2xl font-bold mb-4">XMD Distribution</h3>
-            <p className="mb-8 opacity-90">
-              We help world music artists reach global audiences through our specialized distribution network across the Benelux and beyond.
-            </p>
-            <Link href="/xmd" className="font-bold flex items-center group">
-              Learn More <span className="ml-2 group-hover:translate-x-2 transition-transform">→</span>
             </Link>
           </div>
 
