@@ -16,7 +16,7 @@ interface CartItem {
 }
 
 /**
- * CartContextType interface voor de context waarde
+ * waarde berekeningen
  */
 interface CartContextType {
   cart: CartItem[]

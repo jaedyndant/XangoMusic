@@ -6,15 +6,14 @@ import { useState, useEffect } from 'react'
 import { albums } from './data/albums'
 
 /**
- * Hoofdpagina component
- * 
- * Rekreatie van de hoompage gebaseert op de screenschots, inklusief hero sektie en statistieken.
+ *
+ *home pagina 
  */
 export default function Home() {
   const [nowPlaying, setNowPlaying] = useState(albums[0])
 
   useEffect(() => {
-    // Kies een willekeurig album bij het laden van de pagina
+    // randos album
     const randomIndex = Math.floor(Math.random() * albums.length)
     setNowPlaying(albums[randomIndex])
   }, [])
@@ -49,7 +48,7 @@ export default function Home() {
                 <span className="text-sm text-gray-400">Countries</span>
               </div>
               <div>
-                <span className="block text-3xl font-bold">15+</span>
+                <span className="block text-3xl font-bold">10+</span>
                 <span className="text-sm text-gray-400">Years Experience</span>
               </div>
             </div>

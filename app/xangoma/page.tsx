@@ -1,9 +1,9 @@
 import React from 'react';
 
 /**
- * Xangoma Machasine
+ * Xangoma Magazine
  * 
- * Laat het online magazine zien.
+ * 
  */
 export default function XangomaPage() {
   const editions = [
