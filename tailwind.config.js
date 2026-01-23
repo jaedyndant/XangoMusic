@@ -9,10 +9,10 @@ module.exports = {
     extend: {
       colors: {
         xango: {
-          red: '#DC2626', // Xango brand red
-          dark: '#1F2937',
-          light: '#F9FAFB',
-          grey: '#4A4A4A', // Nardo grey
+          red: '#E11D48', // Felle rode kleur
+          dark: '#111827', // Donkeren kleur voor boven
+          grey: '#374151',
+          light: '#F3F4F6',
         }
       },
       fontFamily: {

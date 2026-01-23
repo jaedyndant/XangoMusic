@@ -1,262 +1,275 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import Link from 'next/link'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
+import { useCart } from './CartContext'
 
+/**
+ * Lijst met alle albums en informatie voor filters
+ */
 const albums = [
   {
-    id: '101068',
-    artist: 'Tammela 33100',
-    title: 'Muistan Vain Astuneeni Sumuun',
-    price: 14,
+    id: 'tinariwen-amatssou',
+    artist: 'Tinariwen',
+    title: 'Amatssou',
+    price: 28.99,
+    type: 'Vinyl',
+    country: 'Mali',
+    genre: 'Desert Blues',
+    image: '/images/albums/101068.jpg',
+    isNew: true,
+    inStock: true,
+  },
+  {
+    id: 'bombino-sahel',
+    artist: 'Bombino',
+    title: 'Sahel',
+    price: 16.99,
     type: 'CD',
-    image: '/images/albums/101068.jpg'
+    country: 'Niger',
+    genre: 'Tuareg Rock',
+    image: '/images/albums/102179.jpg',
+    isNew: false,
+    inStock: true,
   },
   {
-    id: '102179',
-    artist: 'Tammela 33100',
-    title: 'Muistan Vain Astuneeni Sumuun (LP)',
-    price: 20,
-    type: 'VINYL',
-    image: '/images/albums/102179.jpg'
+    id: 'fatoumata-diawara-fenfo',
+    artist: 'Fatoumata Diawara',
+    title: 'Fenfo',
+    price: 32.99,
+    type: 'Vinyl',
+    country: 'Mali',
+    genre: 'Afro-Folk',
+    image: '/images/albums/108761.jpg',
+    isNew: false,
+    inStock: false,
   },
   {
-    id: '108761',
-    artist: 'Tomi Salesvuo East Funk Attack',
-    title: "Nothing's Enough",
-    price: 14,
+    id: 'ballake-sissoko-djourou',
+    artist: 'Ballaké Sissoko',
+    title: 'Djourou',
+    price: 18.99,
     type: 'CD',
-    image: '/images/albums/108761.jpg'
+    country: 'Mali',
+    genre: 'Kora',
+    image: '/images/albums/109872.jpg',
+    isNew: false,
+    inStock: true,
   },
   {
-    id: '109872',
-    artist: 'Tomi Salesvuo East Funk Attack',
-    title: "Nothing's Enough (LP)",
-    price: 20,
-    type: 'VINYL',
-    image: '/images/albums/109872.jpg'
+    id: 'amadou-mariam-la-confusion',
+    artist: 'Amadou & Mariam',
+    title: 'La Confusion',
+    price: 26.99,
+    type: 'Vinyl',
+    country: 'Mali',
+    genre: 'Afro-Pop',
+    image: '/images/albums/107650.jpg',
+    isNew: false,
+    inStock: true,
   },
   {
-    id: '107650',
-    artist: 'Osa7029',
-    title: 'Roots/Branches/Cones',
-    price: 14,
+    id: 'toumani-diabate-symmetric',
+    artist: 'Toumani Diabaté',
+    title: 'Symmetric Orchestra',
+    price: 19.99,
     type: 'CD',
-    image: '/images/albums/107650.jpg'
+    country: 'Mali',
+    genre: 'Kora Jazz',
+    image: '/images/albums/106549.jpg',
+    isNew: false,
+    inStock: true,
   },
   {
-    id: '106549',
-    artist: 'Ouden',
-    title: 'Nothing Left But Sea',
-    price: 14,
+    id: 'ali-farka-toure-talking-timbuktu',
+    artist: 'Ali Farka Touré',
+    title: 'Talking Timbuktu',
+    price: 34.99,
+    type: 'Vinyl',
+    country: 'Mali',
+    genre: 'Desert Blues',
+    image: '/images/albums/105438.jpg',
+    isNew: false,
+    inStock: true,
+  },
+  {
+    id: 'oumou-sangare-mogoya',
+    artist: 'Oumou Sangaré',
+    title: 'Mogoya',
+    price: 17.99,
     type: 'CD',
-    image: '/images/albums/106549.jpg'
-  },
-  {
-    id: '105438',
-    artist: 'Schiavone, Sonia',
-    title: 'Come - Eden!',
-    price: 13,
-    type: 'CD',
-    image: '/images/albums/105438.jpg'
-  },
-  {
-    id: '104327',
-    artist: 'Del Barba, Oscar',
-    title: 'Giuseppe Verdi Entangled',
-    price: 13,
-    type: 'CD',
-    image: '/images/albums/104327.jpg'
-  },
-  {
-    id: '103216',
-    artist: 'Cosentino, Filippo',
-    title: 'Leave The Thorne, Take The Rose…',
-    price: 13,
-    type: 'CD',
-    image: '/images/albums/103216.jpg'
-  },
-  {
-    id: '102105',
-    artist: 'Himla',
-    title: 'Himla',
-    price: 17,
-    type: 'CD',
-    image: '/images/albums/102105.jpg'
-  },
-  {
-    id: '101094',
-    artist: 'Vaev',
-    title: 'Vaev',
-    price: 17,
-    type: 'CD',
-    image: '/images/albums/101094.jpg'
-  },
-  {
-    id: '100961',
-    artist: 'Perier, Lucie & Orwin Hebert',
-    title: 'Apples In Winter',
-    price: 13.5,
-    type: 'CD',
-    image: '/images/albums/100961.jpg'
-  },
-  {
-    id: '109850',
-    artist: 'MacIver, Norrie and The Glasgow Barons',
-    title: 'Songs Of Govan Old',
-    price: 14,
-    type: 'CD',
-    image: '/images/albums/109850.jpg'
-  },
-  {
-    id: '108749',
-    artist: 'Couper, Ross & Ryan',
-    title: 'An Den Dey Made Tae',
-    price: 14,
-    type: 'CD',
-    image: '/images/albums/108749.jpg'
-  },
-  {
-    id: '106527',
-    artist: 'Ska-P',
-    title: 'Game Over',
-    price: 18,
-    type: 'CD',
-    image: '/images/albums/106527.jpg'
-  },
-  {
-    id: '107638',
-    artist: 'Ska-P',
-    title: 'Game Over (2LP)',
-    price: 24.5,
-    type: 'VINYL',
-    image: '/images/albums/107638.jpg'
-  },
-  {
-    id: '104305',
-    artist: 'Roy & Yvonne',
-    title: 'Believe In Yourself',
-    price: 16.5,
-    type: 'CD',
-    image: '/images/albums/104305.jpg'
-  },
-  {
-    id: '105416',
-    artist: 'Roy & Yvonne',
-    title: 'Believe In Yourself (LP)',
-    price: 21.5,
-    type: 'VINYL',
-    image: '/images/albums/105416.jpg'
-  },
-  {
-    id: '103294',
-    artist: "Spain/Catalunya-Various Artists",
-    title: "Soul, R'N'B, Funk",
-    price: 16.5,
-    type: 'CD',
-    image: '/images/albums/103294.jpg'
-  },
-  {
-    id: '102183',
-    artist: 'Galoic, Branko',
-    title: 'Ples Slobode - Danse de la Liberte',
-    price: 14.5,
-    type: 'CD',
-    image: '/images/albums/102183.jpg'
-  },
-  {
-    id: '100295',
-    artist: 'Amparanoia',
-    title: 'Himnopsis Colectiva',
-    price: 16.5,
-    type: 'CD',
-    image: '/images/albums/100295.jpg'
-  },
-  {
-    id: '101072',
-    artist: 'Baro drom Orkestar',
-    title: 'Genau!',
-    price: 14,
-    type: 'CD',
-    image: '/images/albums/101072.jpg'
-  },
-  {
-    id: '104318',
-    artist: 'Fanfara Station',
-    title: 'Tebourba',
-    price: 14,
-    type: 'CD',
-    image: '/images/albums/104318.jpg'
-  },
-  {
-    id: '103207',
-    artist: 'Kerkim',
-    title: 'La Giostra',
-    price: 14,
-    type: 'CD',
-    image: '/images/albums/103207.jpg'
-  },
-  {
-    id: '105429',
-    artist: "L'Alba",
-    title: 'A Princpiu',
-    price: 16.5,
-    type: 'CD',
-    image: '/images/albums/105429.jpg'
+    country: 'Mali',
+    genre: 'Wassoulou',
+    image: '/images/albums/104327.jpg',
+    isNew: false,
+    inStock: true,
   }
 ]
 
 export default function CatalogueGrid() {
-  const [filter, setFilter] = useState('ALL')
+  const searchParams = useSearchParams()
+  const initialSearch = searchParams.get('search') || ''
+  
+  const [searchTerm, setSearchTerm] = useState(initialSearch)
+  const [activeType, setActiveType] = useState('All')
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
+  const { addToCart } = useCart()
 
-  const filteredAlbums = filter === 'ALL' 
-    ? albums 
-    : albums.filter(album => album.type === filter)
+  useEffect(() => {
+    const query = searchParams.get('search')
+    if (query !== null) {
+      setSearchTerm(query)
+    }
+  }, [searchParams])
+
+  const filteredAlbums = albums.filter(album => {
+    const matchesSearch = album.artist.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                         album.title.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesType = activeType === 'All' || album.type === activeType
+    return matchesSearch && matchesType
+  })
 
   return (
     <div className="space-y-8">
-      <div className="flex justify-center space-x-4 mb-8">
-        <button 
-          onClick={() => setFilter('ALL')}
-          className={`px-4 py-2 rounded-full border ${filter === 'ALL' ? 'bg-xango-red text-white' : 'bg-white text-xango-dark'}`}
-        >
-          Allemaal
-        </button>
-        <button 
-          onClick={() => setFilter('CD')}
-          className={`px-4 py-2 rounded-full border ${filter === 'CD' ? 'bg-xango-red text-white' : 'bg-white text-xango-dark'}`}
-        >
-          CD's
-        </button>
-        <button 
-          onClick={() => setFilter('VINYL')}
-          className={`px-4 py-2 rounded-full border ${filter === 'VINYL' ? 'bg-xango-red text-white' : 'bg-white text-xango-dark'}`}
-        >
-          Platen
-        </button>
+      <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+        <div className="relative w-full md:w-2/3">
+          <input 
+            type="text" 
+            placeholder="Search by artist, title, country, or style..." 
+            aria-label="Search catalogue"
+            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-xango-red/20 focus:border-xango-red outline-none"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <svg className="w-5 h-5 absolute left-3 top-2.5 text-gray-400" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7s-14 0-7 7 0 0114 0z" />
+          </svg>
+        </div>
+        
+        <div className="flex items-center gap-2 w-full md:w-auto">
+          <div className="relative">
+            <button 
+              onClick={() => setIsFilterOpen(!isFilterOpen)}
+              className={`flex items-center gap-2 px-4 py-2 border rounded-lg transition-colors ${activeType !== 'All' ? 'bg-xango-red text-white border-xango-red' : 'border-gray-200 hover:bg-gray-50'}`}
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              </svg>
+              {activeType === 'All' ? 'Filters' : activeType}
+            </button>
+            
+            {isFilterOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 z-50 py-2">
+                {['All', 'Vinyl', 'CD'].map((type) => (
+                  <button
+                    key={type}
+                    onClick={() => {
+                      setActiveType(type)
+                      setIsFilterOpen(false)
+                    }}
+                    className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors ${activeType === type ? 'text-xango-red font-bold' : 'text-gray-700'}`}
+                  >
+                    {type}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          
+          <div className="flex border border-gray-200 rounded-lg overflow-hidden">
+            <button className="p-2 bg-xango-red text-white">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+              </svg>
+            </button>
+            <button className="p-2 bg-white text-gray-400 hover:text-gray-600">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="text-sm text-gray-500 flex justify-between items-center">
+        <span>Showing {filteredAlbums.length} of {albums.length} items</span>
+        {(searchTerm !== '' || activeType !== 'All') && (
+          <button 
+            onClick={() => {
+              setSearchTerm('')
+              setActiveType('All')
+            }}
+            className="text-xango-red font-medium hover:underline flex items-center gap-1"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            Reset Filters
+          </button>
+        )}
+      </div>
+
+      {/* Grit weergave van de musiek */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {filteredAlbums.map((album) => (
-          <div key={album.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-            <div className="relative aspect-square">
+          <div key={album.id} className="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col">
+            <Link href={`/catalogue/${album.id}`} className="block relative aspect-square bg-gray-100">
+              {album.isNew && (
+                <span className="absolute top-3 left-3 z-10 bg-xango-red text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm uppercase tracking-wider">New</span>
+              )}
+              {!album.inStock && (
+                <span className="absolute top-3 left-3 z-10 bg-gray-500 text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm uppercase tracking-wider">Out of Stock</span>
+              )}
               <Image
                 src={album.image}
                 alt={album.title}
                 fill
-                className="object-cover"
+                className={`object-cover transition-transform duration-500 group-hover:scale-105 ${!album.inStock ? 'grayscale opacity-60' : ''}`}
               />
-            </div>
-            <div className="p-4">
-              <h3 className="font-bold text-lg text-xango-dark truncate">{album.artist}</h3>
-              <p className="text-gray-600 text-sm truncate">{album.title}</p>
-              <div className="mt-4 flex items-center justify-between">
-                <span className="text-xango-red font-bold">€{album.price.toFixed(2)}</span>
-                <span className="text-xs px-2 py-1 bg-gray-100 rounded text-gray-500 uppercase">{album.type}</span>
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <div className="text-center text-white p-4">
+                  <p className="text-sm italic">{album.artist}</p>
+                  <p className="font-bold">{album.title}</p>
+                </div>
               </div>
-              <button className="w-full mt-4 bg-xango-dark text-white py-2 rounded hover:bg-opacity-90 transition-opacity text-sm">
-                In winkelwagen leggen
-              </button>
+            </Link>
+            
+            <div className="p-5 flex flex-col flex-grow">
+              <Link href={`/catalogue/${album.id}`} className="mb-2 block group-hover:text-xango-red transition-colors">
+                <h3 className="font-bold text-gray-900 truncate">{album.artist}</h3>
+                <p className="text-gray-600 text-sm truncate">{album.title}</p>
+              </Link>
+              
+              <div className="flex items-center justify-between text-xs text-gray-400 mb-4">
+                <span>{album.type}</span>
+                <span>{album.country}</span>
+              </div>
+              
+              <div className="mb-4">
+                <span className="inline-block bg-gray-100 text-gray-600 text-[10px] px-2 py-0.5 rounded uppercase tracking-tighter">
+                  {album.genre}
+                </span>
+              </div>
+              
+              <div className="mt-auto flex items-center justify-between">
+                <span className="text-lg font-bold text-gray-900">${album.price.toFixed(2)}</span>
+                <button 
+                  onClick={() => album.inStock && addToCart(album)}
+                  disabled={!album.inStock}
+                  className={`flex items-center gap-1 px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+                    album.inStock 
+                    ? 'bg-xango-red text-white hover:bg-red-700 shadow-md shadow-red-200' 
+                    : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                  }`}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                  </svg>
+                  {album.inStock ? 'Add' : 'N/A'}
+                </button>
+              </div>
             </div>
           </div>
         ))}

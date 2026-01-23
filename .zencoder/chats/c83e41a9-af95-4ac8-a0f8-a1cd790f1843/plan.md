@@ -20,7 +20,9 @@ Save findings to `c:\Users\jaedy\OneDrive\Desktop\XangoMusic\XangoMusic\.zencode
 - Affected components
 - Proposed solution
 
-### [x] Step: Implementation
+### [x] Step: Final Adjustments
+- Reverted UI text to English
+- Added Dutch comments to the source code
 
 Read `c:\Users\jaedy\OneDrive\Desktop\XangoMusic\XangoMusic\.zencoder\chats\c83e41a9-af95-4ac8-a0f8-a1cd790f1843/investigation.md`
 Implement the bug fix.
